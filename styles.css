@@ -108,6 +108,14 @@ body.dark-theme .site-header {
     white-space: nowrap;
 }
 .logo-dot { color: var(--pink); }
+.logo-subtext {
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--text-dim);
+    margin-left: 0.5rem;
+    letter-spacing: 0.4px;
+}
 
 /* ── TOP NAV — absolutely centered ──────────── */
 .top-nav {

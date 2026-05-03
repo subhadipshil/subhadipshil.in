@@ -471,7 +471,8 @@
 
     // ── STATUS BADGE TEXT ROTATION ────────────────────────
     const statuses = [
-        'Available for new projects',
+        'Available for motion graphics, design, and creative production',
+        'Creative producer shipping polished digital experiences',
         'Building aesthetic things ✨',
         'Open to collaborations',
         'Shipping to production 🚀',
