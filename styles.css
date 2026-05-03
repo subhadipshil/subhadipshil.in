@@ -475,6 +475,26 @@ pre {
 .skill-pct { font-family: var(--font-mono); font-size: 0.68rem; color: var(--text-dim); width: 32px; text-align: right; }
 .progress-bg { flex: 1; height: 5px; background: var(--progress-bg); border-radius: 10px; overflow: hidden; }
 .progress-bar { height: 100%; border-radius: 10px; background: var(--progress-fill); transition: width 1.2s var(--ease); }
+.skill-card-detail {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.4rem;
+    padding-top: 0.85rem;
+    border-top: 1px solid rgba(255,255,255,0.08);
+}
+.skill-detail-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.55rem 0.9rem;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.08);
+    color: var(--text);
+    font-size: 0.72rem;
+    font-weight: 600;
+}
 
 .tech-pills-wrap { display: flex; flex-wrap: wrap; gap: 0.6rem; }
 .tech-pill {
