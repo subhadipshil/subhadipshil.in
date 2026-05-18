@@ -20,7 +20,8 @@
         mobileMenuBtn.textContent = mobileNav.classList.contains('open') ? '✕' : '☰';
     });
 
-    document.querySelectorAll('.mobile-nav-link').forEach(link => {
+    // Close mobile nav on any link/button inside it (including the CTA)
+    document.querySelectorAll('.mobile-nav-link, .mobile-nav a').forEach(link => {
         link.addEventListener('click', () => {
             mobileNav.classList.remove('open');
             mobileMenuBtn.textContent = '☰';
