@@ -491,45 +491,7 @@
             }, 300);
         }, 3500);
     }
-    // ── DEV TIPS & BLOOPERS CAROUSEL ─────────────────────
-    const carouselItems = [
-        { type: 'TIP', text: "Write code for humans, not just compilers." },
-        { type: 'BLOOP', text: "Forgot 'git push' before a presentation." },
-        { type: 'TIP', text: "Simplicity is the ultimate sophistication." },
-        { type: 'BLOOP', text: "Force pushed to 'main' by mistake. (Don't.)" },
-        { type: 'TIP', text: "The best code is the code you delete." },
-        { type: 'BLOOP', text: "Spent 4 hours debugging a missing semicolon." },
-        { type: 'TIP', text: "Consistency > Cleverness." },
-        { type: 'BLOOP', text: "Tested in prod. It didn't go well." },
-        { type: 'TIP', text: "Accessibility is a foundation, not a feature." },
-        { type: 'BLOOP', text: "Named a variable 'temp1', 'temp2', 'temp3'." }
-    ];
 
-    const tipEl = document.getElementById('dev-tip');
-    if (tipEl) {
-        let currentIdx = 0;
-        const rotateCarousel = () => {
-            // Out animation
-            tipEl.style.opacity = 0;
-            tipEl.style.transform = 'translateY(-5px)';
-            
-            setTimeout(() => {
-                const item = carouselItems[currentIdx];
-                tipEl.textContent = `/* [${item.type}] ${item.text} */`;
-                
-                // In animation
-                tipEl.style.transform = 'translateY(5px)';
-                setTimeout(() => {
-                    tipEl.style.opacity = 1;
-                    tipEl.style.transform = 'translateY(0)';
-                }, 50);
-
-                currentIdx = (currentIdx + 1) % carouselItems.length;
-            }, 400);
-        };
-        setInterval(rotateCarousel, 3000); // 3 seconds per user request
-        rotateCarousel(); // Initial call
-    }
 
     // ── RENDER HOME BLOG WIDGET ───────────────────────────
     const renderBlogHomeWidget = (mode = 'latest') => {
