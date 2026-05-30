@@ -6,6 +6,45 @@
 (() => {
     'use strict';
 
+    // ── COOL STANDALONE PRELOADER ANIMATION ───────────────
+    const animatePreloader = () => {
+        const preloader = document.getElementById('blog-preloader');
+        const bar = document.getElementById('preloader-bar');
+        const text = document.getElementById('preloader-text');
+        if (!preloader || !bar || !text) return;
+
+        const steps = [
+            { pct: 25, text: 'INITIALIZING DATA LAYER...' },
+            { pct: 55, text: 'SYNCHRONIZING CURSOR PHYSICS...' },
+            { pct: 85, text: 'RENDERING CREATIVE ENGINE...' },
+            { pct: 100, text: 'WELCOME TO THE VIBE WORKSPACE' }
+        ];
+
+        let stepIndex = 0;
+        const runStep = () => {
+            if (stepIndex >= steps.length) {
+                setTimeout(() => {
+                    preloader.classList.add('fade-out');
+                    document.body.style.overflow = ''; // Restore page scrolling
+                    setTimeout(() => preloader.remove(), 800);
+                }, 350);
+                return;
+            }
+
+            const current = steps[stepIndex];
+            bar.style.width = current.pct + '%';
+            text.textContent = current.text;
+
+            stepIndex++;
+            const timeouts = [220, 260, 280, 200];
+            setTimeout(runStep, timeouts[stepIndex - 1]);
+        };
+
+        document.body.style.overflow = 'hidden';
+        setTimeout(runStep, 120);
+    };
+    animatePreloader();
+
     // ── THEME SYNC ─────────────────────────────────────────
     const themeBtn = document.getElementById('theme-toggle');
     const savedTheme = localStorage.getItem('theme');
