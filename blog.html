@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thoughts & Writings // Subhadip Shil</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Main Portfolio CSS Reference -->
+    <link rel="stylesheet" href="styles.css?v=5.3.0">
+    
+    <!-- Blog Workspace Page Specific Styles -->
+    <style>
+        /* Standalone Blog Layout Adaptations */
+        body {
+            overflow-x: hidden;
+            padding-top: 100px;
+        }
+
+        .blog-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 5rem;
+        }
+
+        /* Standalone Header Nav tweaks */
+        .site-header {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: 1.1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .header-logo-group {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.38rem;
+        }
+
+        .back-link {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            font-weight: 700;
+            color: var(--text-dim);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s var(--ease);
+            opacity: 0.75;
+        }
+
+        .back-link:hover {
+            color: var(--pink);
+            opacity: 1;
+            transform: translateX(-3px);
+        }
+
+        /* High-Impact Hero */
+        .blog-hero {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .blog-hero .section-title {
+            margin-top: 1.5rem;
+            margin-bottom: 0.85rem;
+        }
+
+        /* Instant Search Bar */
+        .blog-search-container {
+            max-width: 480px;
+            margin: 0 auto 2.5rem;
+            position: relative;
+        }
+
+        .blog-search-input {
+            width: 100%;
+            background: var(--card);
+            border: 1.5px solid var(--border);
+            border-radius: 100px;
+            padding: 0.9rem 1.5rem 0.9rem 3.2rem;
+            font-family: var(--font-body);
+            font-size: 0.88rem;
+            color: var(--text);
+            transition: all 0.3s var(--ease);
+            backdrop-filter: blur(8px);
+        }
+
+        .blog-search-input:focus {
+            outline: none;
+            border-color: var(--pink);
+            box-shadow: 0 0 20px rgba(255,126,179,0.15);
+            background: var(--card-hover);
+        }
+
+        .blog-search-icon {
+            position: absolute;
+            left: 1.35rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.05rem;
+            color: var(--text-dim);
+            pointer-events: none;
+        }
+
+        /* Filter Controls */
+        .blog-filter-tabs {
+            justify-content: center;
+            margin-bottom: 3.5rem;
+        }
+
+        /* Deep-Link Share Button */
+        .blog-share-btn {
+            background: rgba(255,126,179,0.08);
+            border: 1px solid rgba(255,126,179,0.3);
+            border-radius: 100px;
+            color: var(--pink);
+            padding: 0.45rem 1.1rem;
+            font-family: var(--font-body);
+            font-size: 0.72rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.25s var(--ease);
+            margin-left: auto;
+        }
+
+        .blog-share-btn:hover {
+            background: var(--pink);
+            border-color: var(--pink);
+            color: #fff;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(255,126,179,0.3);
+        }
+
+        .blog-share-btn svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        /* Floating Toast Notification */
+        .blog-toast {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translate(-50%, 20px);
+            background: rgba(17,17,17,0.92);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: #fff;
+            padding: 0.8rem 1.8rem;
+            border-radius: 100px;
+            font-family: var(--font-body);
+            font-size: 0.8rem;
+            font-weight: 700;
+            z-index: 2000;
+            opacity: 0;
+            pointer-events: none;
+            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
+            box-shadow: 0 16px 40px rgba(0,0,0,0.3);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .blog-toast.show {
+            transform: translate(-50%, 0);
+            opacity: 1;
+        }
+
+        /* Immersive Comments & Reviews System */
+        .comments-section {
+            margin-top: 3.5rem;
+            padding-top: 2.5rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .comments-title {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            font-weight: 800;
+            margin-bottom: 1.8rem;
+            color: var(--text);
+        }
+
+        .comments-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .comment-item {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.2rem 1.4rem;
+            transition: background 0.3s ease;
+            animation: slideInComment 0.4s var(--ease) forwards;
+        }
+
+        @keyframes slideInComment {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .comment-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+
+        .comment-author {
+            font-family: var(--font-body);
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .comment-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .comment-date {
+            font-family: var(--font-mono);
+            font-size: 0.62rem;
+            color: var(--text-dim);
+        }
+
+        .comment-stars {
+            color: #ffbd2e;
+            font-size: 0.72rem;
+            font-weight: 700;
+        }
+
+        .comment-body {
+            font-size: 0.85rem;
+            line-height: 1.6;
+            color: var(--text);
+            opacity: 0.9;
+            margin: 0;
+        }
+
+        /* Review Submission Form */
+        .review-form {
+            background: rgba(0,0,0,0.01);
+            border: 1px dashed var(--border);
+            border-radius: 18px;
+            padding: 1.6rem;
+        }
+        
+        body.dark-theme .review-form {
+            background: rgba(255,255,255,0.01);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 580px) {
+            .form-row { grid-template-columns: 1fr; }
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .form-label {
+            font-family: var(--font-body);
+            font-size: 0.76rem;
+            font-weight: 700;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-input {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 0.65rem 0.95rem;
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            color: var(--text);
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--pink);
+            background: var(--card-hover);
+        }
+
+        /* Interactive Stars Selector */
+        .rating-selector {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            height: 38px;
+        }
+
+        .star-option {
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            font-size: 1.3rem;
+            color: var(--border);
+            transition: transform 0.15s ease, color 0.15s ease;
+        }
+
+        .star-option:hover {
+            transform: scale(1.15);
+        }
+
+        .star-option.active {
+            color: #ffbd2e;
+        }
+
+        .form-submit-btn {
+            background: linear-gradient(135deg, var(--pink), var(--purple));
+            color: #fff;
+            border: none;
+            border-radius: 100px;
+            padding: 0.7rem 1.6rem;
+            font-family: var(--font-body);
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(255,126,179,0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            align-self: flex-start;
+            margin-top: 0.5rem;
+        }
+
+        .form-submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255,126,179,0.45);
+        }
+
+        /* Cool Standalone Glassmorphic Preloader */
+        .blog-preloader {
+            position: fixed;
+            inset: 0;
+            z-index: 99999;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.8s;
+        }
+        
+        body.dark-theme .blog-preloader {
+            background: #0a0a0a;
+        }
+
+        .preloader-glass {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at center, rgba(255,126,179,0.06) 0%, rgba(0,0,0,0) 70%);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            z-index: -1;
+        }
+
+        .preloader-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.25rem;
+            text-align: center;
+            width: 90%;
+            max-width: 320px;
+        }
+
+        .preloader-logo {
+            font-family: var(--font-display);
+            font-size: 1.6rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: #fff;
+        }
+
+        .preloader-logo .logo-dot {
+            color: var(--pink);
+        }
+
+        .preloader-bar-wrap {
+            width: 100%;
+            height: 3px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .preloader-bar {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--pink), var(--purple));
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255,126,179,0.8);
+            transition: width 0.3s ease;
+        }
+
+        .preloader-text {
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            color: var(--text-dim);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-shadow: 0 0 8px rgba(255,255,255,0.1);
+        }
+        
+        .blog-preloader.fade-out {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="dark-theme"> <!-- Default dark-theme -->
+
+    <!-- Beautiful Glassmorphic Preloader -->
+    <div class="blog-preloader" id="blog-preloader">
+        <div class="preloader-glass"></div>
+        <div class="preloader-content">
+            <div class="preloader-logo">vibe.coder<span class="logo-dot">.</span></div>
+            <div class="preloader-bar-wrap">
+                <div class="preloader-bar" id="preloader-bar"></div>
+            </div>
+            <div class="preloader-text" id="preloader-text">INITIALIZING DATA LAYER...</div>
+        </div>
+    </div>
+
+    <!-- Ambient Grid Blobs -->
+    <div class="ambient-grid">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <!-- Standalone Site Header -->
+    <header class="site-header reveal">
+        <div class="header-logo-group">
+            <a href="index.html" class="logo">vibe.coder<span class="logo-dot">.</span><span class="logo-subtext">creative producer</span></a>
+            <a href="index.html" class="back-link">
+                <span>←</span> Back to Portfolio
+            </a>
+        </div>
+        
+        <div class="header-actions">
+            <button class="theme-toggle-btn" id="theme-toggle" title="Toggle Theme" aria-label="Toggle dark/light theme">🌓</button>
+        </div>
+    </header>
+
+    <!-- Main standalone blog container -->
+    <main class="blog-container">
+        
+        <!-- Hero Header -->
+        <section class="blog-hero">
+            <div class="section-label">// standalone blog workspace</div>
+            <h1 class="section-title">Thoughts &amp; <span class="gradient-text">Writings</span></h1>
+            <p class="section-sub">Code, design, motion — my brain on the internet.</p>
+        </section>
+
+        <!-- Search Input Bar -->
+        <div class="blog-search-container reveal">
+            <span class="blog-search-icon">🔍</span>
+            <input type="text" id="blog-search" class="blog-search-input" placeholder="Search by title, categories, or keywords..." aria-label="Search posts">
+        </div>
+
+        <!-- Filter Tabs -->
+        <div class="blog-filter-tabs reveal">
+            <button class="blog-filter-tab active" data-filter="all">All Posts</button>
+            <button class="blog-filter-tab" data-filter="latest">Latest</button>
+            <button class="blog-filter-tab" data-filter="rated">Most Rated ⭐</button>
+            <button class="blog-filter-tab" data-filter="design">Design</button>
+            <button class="blog-filter-tab" data-filter="dev">Dev</button>
+            <button class="blog-filter-tab" data-filter="motion">Motion</button>
+        </div>
+
+        <!-- Blog Cards Bento Grid -->
+        <div class="blog-grid" id="blog-grid">
+            <!-- Populated by blog.js -->
+        </div>
+
+    </main>
+
+    <!-- Dedicated Full-Screen frosted article reader -->
+    <div class="blog-modal" id="blog-modal" role="dialog" aria-modal="true" aria-labelledby="blog-modal-title">
+        <div class="blog-modal-overlay" id="blog-modal-overlay"></div>
+        <article class="blog-modal-panel">
+            <button class="blog-modal-close" id="blog-modal-close" aria-label="Close article">✕</button>
+            
+            <div class="blog-modal-header">
+                <div class="blog-modal-category-wrap" style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.8rem;">
+                    <div id="blog-modal-meta"></div>
+                    
+                    <!-- Deep-Link Sharing Button -->
+                    <button class="blog-share-btn" id="blog-share-btn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                        </svg>
+                        Share Link
+                    </button>
+                </div>
+                
+                <h2 class="blog-modal-title" id="blog-modal-title"></h2>
+                
+                <div class="blog-modal-info" id="blog-modal-info"></div>
+            </div>
+            
+            <!-- Article Body -->
+            <div class="blog-modal-body" id="blog-modal-body"></div>
+
+            <!-- Immersive Comments & Review section -->
+            <section class="comments-section">
+                <h3 class="comments-title">Reviews &amp; Comments (<span id="comments-count">0</span>)</h3>
+                
+                <!-- Comments List -->
+                <div class="comments-list" id="comments-list">
+                    <!-- Populated dynamically -->
+                </div>
+
+                <!-- Review Form -->
+                <div class="review-form">
+                    <h4 style="margin-bottom: 0.85rem; font-family: var(--font-display); font-weight: 700;">Submit a Review</h4>
+                    <form id="comment-form" style="display: flex; flex-direction: column; gap: 0.95rem;">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="comment-author">Your Name</label>
+                                <input type="text" id="comment-author" class="form-input" placeholder="e.g. Subhadip Shil" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Your Rating</label>
+                                <div class="rating-selector" id="rating-selector" role="radiogroup" aria-label="Select rating">
+                                    <button type="button" class="star-option active" data-val="1" role="radio" aria-checked="false" aria-label="1 Star">★</button>
+                                    <button type="button" class="star-option active" data-val="2" role="radio" aria-checked="false" aria-label="2 Stars">★</button>
+                                    <button type="button" class="star-option active" data-val="3" role="radio" aria-checked="false" aria-label="3 Stars">★</button>
+                                    <button type="button" class="star-option active" data-val="4" role="radio" aria-checked="false" aria-label="4 Stars">★</button>
+                                    <button type="button" class="star-option active" data-val="5" role="radio" aria-checked="true" aria-label="5 Stars">★</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="comment-text">Review Message</label>
+                            <textarea id="comment-text" class="form-input" rows="4" placeholder="Share your feedback, comments, or technical feedback on this post..." style="resize: vertical;" required></textarea>
+                        </div>
+                        <button type="submit" class="form-submit-btn">Submit Review ✨</button>
+                    </form>
+                </div>
+            </section>
+
+        </article>
+    </div>
+
+    <!-- Floating Toast Feedback -->
+    <div class="blog-toast" id="blog-toast">
+        <span>📋</span> Direct link copied to clipboard!
+    </div>
+
+    <!-- Custom Physics Cursor Ring -->
+    <div class="cursor-dot" id="cursor-dot"></div>
+    <div class="cursor-ring" id="cursor-ring"></div>
+
+    <!-- Scripts -->
+    <script src="blog-posts.js?v=5.3.0"></script>
+    <script src="blog.js?v=5.3.0"></script>
+</body>
+</html>
