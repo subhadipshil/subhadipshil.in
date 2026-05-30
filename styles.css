@@ -724,6 +724,9 @@ body.dark-theme .payload-row textarea { background: rgba(255,255,255,0.05); }
 .footer-inner { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
 .footer-inner p { font-size: 0.82rem; color: var(--text-dim); }
 .footer-copy { font-family: var(--font-mono); font-size: 0.68rem; opacity: 0.4; }
+.site-footer.reveal {
+    transition: opacity 1s var(--ease), transform 1s var(--ease);
+}
 
 /* ── RESPONSIVE ──────────────────────────────── */
 @media (max-width: 1024px) {
