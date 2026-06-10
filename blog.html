@@ -543,78 +543,96 @@
         <article class="blog-modal-panel">
             <button class="blog-modal-close" id="blog-modal-close" aria-label="Close article">✕</button>
 
-            <div class="blog-modal-header">
-                <div class="blog-modal-category-wrap"
-                    style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.8rem;">
-                    <div id="blog-modal-meta"></div>
+            <!-- Left Widescreen Sidebar -->
+            <div class="blog-modal-sidebar">
+                <div class="blog-modal-header">
+                    <div class="blog-modal-category-wrap"
+                        style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.8rem;">
+                        <div id="blog-modal-meta"></div>
 
-                    <!-- Deep-Link Sharing Button -->
-                    <button class="blog-share-btn" id="blog-share-btn">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
-                            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
-                        </svg>
-                        Share Link
-                    </button>
+                        <!-- Deep-Link Sharing Button -->
+                        <button class="blog-share-btn" id="blog-share-btn">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                            </svg>
+                            Share Link
+                        </button>
+                    </div>
+
+                    <h2 class="blog-modal-title" id="blog-modal-title"></h2>
+
+                    <div class="blog-modal-info" id="blog-modal-info"></div>
                 </div>
 
-                <h2 class="blog-modal-title" id="blog-modal-title"></h2>
-
-                <div class="blog-modal-info" id="blog-modal-info"></div>
+                <!-- Custom Aesthetic Creative Profile Card -->
+                <div class="blog-modal-author-card">
+                    <div class="author-avatar-wrap">
+                        <span class="author-avatar-initials">SS</span>
+                        <div class="author-pulse-ring"></div>
+                    </div>
+                    <div class="author-details">
+                        <span class="author-label">WRITTEN BY</span>
+                        <span class="author-name">Subhadip Shil</span>
+                        <span class="author-title">Creative Producer &amp; Dev</span>
+                    </div>
+                </div>
             </div>
 
-            <!-- Article Body -->
-            <div class="blog-modal-body" id="blog-modal-body"></div>
+            <!-- Right Widescreen Content -->
+            <div class="blog-modal-content-wrap">
+                <!-- Article Body -->
+                <div class="blog-modal-body" id="blog-modal-body"></div>
 
-            <!-- Immersive Comments & Review section -->
-            <section class="comments-section">
-                <h3 class="comments-title">Reviews &amp; Comments (<span id="comments-count">0</span>)</h3>
+                <!-- Immersive Comments & Review section -->
+                <section class="comments-section">
+                    <h3 class="comments-title">Reviews &amp; Comments (<span id="comments-count">0</span>)</h3>
 
-                <!-- Comments List -->
-                <div class="comments-list" id="comments-list">
-                    <!-- Populated dynamically -->
-                </div>
+                    <!-- Comments List -->
+                    <div class="comments-list" id="comments-list">
+                        <!-- Populated dynamically -->
+                    </div>
 
-                <!-- Review Form -->
-                <div class="review-form">
-                    <h4 style="margin-bottom: 0.85rem; font-family: var(--font-display); font-weight: 700;">Submit a
-                        Review</h4>
-                    <form id="comment-form" style="display: flex; flex-direction: column; gap: 0.95rem;">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label class="form-label" for="comment-author">Your Name</label>
-                                <input type="text" id="comment-author" class="form-input"
-                                    placeholder="e.g. Subhadip Shil" required>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label">Your Rating</label>
-                                <div class="rating-selector" id="rating-selector" role="radiogroup"
-                                    aria-label="Select rating">
-                                    <button type="button" class="star-option active" data-val="1" role="radio"
-                                        aria-checked="false" aria-label="1 Star">★</button>
-                                    <button type="button" class="star-option active" data-val="2" role="radio"
-                                        aria-checked="false" aria-label="2 Stars">★</button>
-                                    <button type="button" class="star-option active" data-val="3" role="radio"
-                                        aria-checked="false" aria-label="3 Stars">★</button>
-                                    <button type="button" class="star-option active" data-val="4" role="radio"
-                                        aria-checked="false" aria-label="4 Stars">★</button>
-                                    <button type="button" class="star-option active" data-val="5" role="radio"
-                                        aria-checked="true" aria-label="5 Stars">★</button>
+                    <!-- Review Form -->
+                    <div class="review-form">
+                        <h4 style="margin-bottom: 0.85rem; font-family: var(--font-display); font-weight: 700;">Submit a
+                            Review</h4>
+                        <form id="comment-form" style="display: flex; flex-direction: column; gap: 0.95rem;">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label" for="comment-author">Your Name</label>
+                                    <input type="text" id="comment-author" class="form-input"
+                                        placeholder="e.g. Subhadip Shil" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Your Rating</label>
+                                    <div class="rating-selector" id="rating-selector" role="radiogroup"
+                                        aria-label="Select rating">
+                                        <button type="button" class="star-option active" data-val="1" role="radio"
+                                            aria-checked="false" aria-label="1 Star">★</button>
+                                        <button type="button" class="star-option active" data-val="2" role="radio"
+                                            aria-checked="false" aria-label="2 Stars">★</button>
+                                        <button type="button" class="star-option active" data-val="3" role="radio"
+                                            aria-checked="false" aria-label="3 Stars">★</button>
+                                        <button type="button" class="star-option active" data-val="4" role="radio"
+                                            aria-checked="false" aria-label="4 Stars">★</button>
+                                        <button type="button" class="star-option active" data-val="5" role="radio"
+                                            aria-checked="true" aria-label="5 Stars">★</button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" for="comment-text">Review Message</label>
-                            <textarea id="comment-text" class="form-input" rows="4"
-                                placeholder="Share your feedback, comments, or technical feedback on this post..."
-                                style="resize: vertical;" required></textarea>
-                        </div>
-                        <button type="submit" class="form-submit-btn">Submit Review ✨</button>
-                    </form>
-                </div>
-            </section>
-
+                            <div class="form-group">
+                                <label class="form-label" for="comment-text">Review Message</label>
+                                <textarea id="comment-text" class="form-input" rows="4"
+                                    placeholder="Share your feedback, comments, or technical feedback on this post..."
+                                    style="resize: vertical;" required></textarea>
+                            </div>
+                            <button type="submit" class="form-submit-btn">Submit Review ✨</button>
+                        </form>
+                    </div>
+                </section>
+            </div>
         </article>
     </div>
 
