@@ -13,7 +13,7 @@
 
     // Elements
     const warningBanner = document.getElementById('config-warning-banner');
-    const loginSection  = document.getElementById('login-section');
+    const loginSection = document.getElementById('login-section');
     const dashboardSection = document.getElementById('dashboard-section');
     const headerActions = document.getElementById('header-user-actions');
     const userEmailDisplay = document.getElementById('user-email-display');
@@ -21,39 +21,39 @@
     const editorActionTitle = document.getElementById('editor-action-title');
 
     // Form inputs
-    const editorForm    = document.getElementById('editor-form');
-    const editPostId    = document.getElementById('edit-post-id');
-    const postTitle     = document.getElementById('post-title');
-    const postSlug      = document.getElementById('post-slug');
-    const postCategory  = document.getElementById('post-category');
-    const postReadTime  = document.getElementById('post-read-time');
-    const postRating    = document.getElementById('post-rating');
-    const postDate      = document.getElementById('post-date');
-    const postExcerpt   = document.getElementById('post-excerpt');
-    const postBody      = document.getElementById('post-body');
+    const editorForm = document.getElementById('editor-form');
+    const editPostId = document.getElementById('edit-post-id');
+    const postTitle = document.getElementById('post-title');
+    const postSlug = document.getElementById('post-slug');
+    const postCategory = document.getElementById('post-category');
+    const postReadTime = document.getElementById('post-read-time');
+    const postRating = document.getElementById('post-rating');
+    const postDate = document.getElementById('post-date');
+    const postExcerpt = document.getElementById('post-excerpt');
+    const postBody = document.getElementById('post-body');
 
     // Buttons
-    const btnAddNew     = document.getElementById('btn-add-new');
-    const btnAutoSlug   = document.getElementById('btn-auto-slug');
+    const btnAddNew = document.getElementById('btn-add-new');
+    const btnAutoSlug = document.getElementById('btn-auto-slug');
     const btnDeletePost = document.getElementById('btn-delete-post');
     const btnCancelEdit = document.getElementById('btn-cancel-edit');
-    const btnLogout     = document.getElementById('btn-logout');
+    const btnLogout = document.getElementById('btn-logout');
 
     // Tabs
-    const tabButtons    = document.querySelectorAll('.editor-tab');
-    const editPane      = document.getElementById('edit-pane');
-    const previewPane   = document.getElementById('preview-pane');
+    const tabButtons = document.querySelectorAll('.editor-tab');
+    const editPane = document.getElementById('edit-pane');
+    const previewPane = document.getElementById('preview-pane');
 
     // Preview Elements
-    const previewTitle  = document.getElementById('preview-title');
-    const previewMeta   = document.getElementById('preview-meta');
-    const previewInfo   = document.getElementById('preview-info');
-    const previewBody   = document.getElementById('preview-body');
+    const previewTitle = document.getElementById('preview-title');
+    const previewMeta = document.getElementById('preview-meta');
+    const previewInfo = document.getElementById('preview-info');
+    const previewBody = document.getElementById('preview-body');
 
     // Toast
-    const toastEl       = document.getElementById('admin-toast');
-    const toastIcon     = document.getElementById('toast-icon');
-    const toastMessage  = document.getElementById('toast-message');
+    const toastEl = document.getElementById('admin-toast');
+    const toastIcon = document.getElementById('toast-icon');
+    const toastMessage = document.getElementById('toast-message');
 
     // ── TOAST NOTIFICATION UTILITY ────────────────────────
     const showToast = (message, type = 'success') => {
@@ -69,22 +69,22 @@
 
     // ── PRECISION TRAIL CURSOR ─────────────────────────────
     const initCursor = () => {
-        const dot  = document.getElementById('cursor-dot');
+        const dot = document.getElementById('cursor-dot');
         const ring = document.getElementById('cursor-ring');
 
         if (dot && ring && window.matchMedia('(hover: hover)').matches) {
             let mx = 0, my = 0, rx = 0, ry = 0;
             document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
-            
+
             const lerp = (a, b, t) => a + (b - a) * t;
-            
+
             const animateCursor = () => {
                 rx = lerp(rx, mx, 0.12);
                 ry = lerp(ry, my, 0.12);
-                dot.style.left  = mx + 'px';
-                dot.style.top   = my + 'px';
+                dot.style.left = mx + 'px';
+                dot.style.top = my + 'px';
                 ring.style.left = rx + 'px';
-                ring.style.top  = ry + 'px';
+                ring.style.top = ry + 'px';
                 requestAnimationFrame(animateCursor);
             };
             animateCursor();
@@ -170,18 +170,18 @@
     // ── AUTHENTICATION ENGINE ──────────────────────────────
     const checkAuth = async () => {
         supabaseClient = window.getSupabaseClient();
-        
+
         if (!supabaseClient) {
             // Unconfigured sandbox state
             warningBanner.style.display = 'block';
             showToast('Running in sandbox preview mode. Setup Supabase config to save.', 'info');
-            
+
             // Show dashboard but disable actual persistence actions
             loginSection.style.display = 'none';
             dashboardSection.style.display = 'block';
             headerActions.style.display = 'flex';
             userEmailDisplay.textContent = 'sandbox@local';
-            
+
             // Load local posts fallback in sidebar
             localPosts = window.BLOG_POSTS || [];
             renderSidebar();
@@ -192,14 +192,14 @@
         try {
             // Check session
             const { data: { session } } = await supabaseClient.auth.getSession();
-            
+
             if (session) {
                 // Logged in
                 loginSection.style.display = 'none';
                 dashboardSection.style.display = 'block';
                 headerActions.style.display = 'flex';
                 userEmailDisplay.textContent = session.user.email;
-                
+
                 await loadDashboardData();
             } else {
                 // Logged out
@@ -230,7 +230,7 @@
 
         try {
             const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password });
-            
+
             if (error) throw error;
 
             showToast('Authenticated successfully');
@@ -267,7 +267,7 @@
                 .order('date', { ascending: false });
 
             if (error) throw error;
-            
+
             localPosts = data || [];
             renderSidebar();
             resetForm();
@@ -282,7 +282,7 @@
     // Render Posts in Sidebar
     const renderSidebar = () => {
         postsListTarget.innerHTML = '';
-        
+
         if (localPosts.length === 0) {
             postsListTarget.innerHTML = '<p style="padding:1rem; font-size:0.75rem; text-align:center; opacity:0.5;">No articles found. Add your first post!</p>';
             return;
@@ -324,12 +324,12 @@
 
         // Populate fields
         editPostId.value = post.id || '';
-        postTitle.value  = post.title || '';
-        postSlug.value   = post.slug || '';
+        postTitle.value = post.title || '';
+        postSlug.value = post.slug || '';
         postCategory.value = post.category || 'Motion';
         postReadTime.value = post.readTime || post.read_time || '';
-        postRating.value   = post.rating || 5.0;
-        
+        postRating.value = post.rating || 5.0;
+
         // Date formatting to YYYY-MM-DD for input
         if (post.date) {
             const dateObj = new Date(post.date);
@@ -342,7 +342,7 @@
         }
 
         postExcerpt.value = post.excerpt || '';
-        postBody.value    = post.body || '';
+        postBody.value = post.body || '';
 
         // UI state edits
         editorActionTitle.textContent = 'Edit Article';
@@ -350,7 +350,7 @@
 
         // Scroll editor top
         document.querySelector('.editor-panel').scrollIntoView({ behavior: 'smooth' });
-        
+
         // Reset tabs to Editor
         tabButtons[0].click();
     };
@@ -360,7 +360,7 @@
         activePost = null;
         editorForm.reset();
         editPostId.value = '';
-        
+
         // Defaults
         postRating.value = '5.0';
         postCategory.value = 'Motion';
@@ -369,7 +369,7 @@
 
         editorActionTitle.textContent = 'Create New Article';
         btnDeletePost.style.display = 'none';
-        
+
         renderSidebar();
         tabButtons[0].click();
     };
@@ -382,13 +382,13 @@
         e.preventDefault();
 
         const titleVal = postTitle.value.trim();
-        const slugVal  = postSlug.value.trim();
-        const catVal   = postCategory.value;
-        const readVal  = postReadTime.value.trim();
+        const slugVal = postSlug.value.trim();
+        const catVal = postCategory.value;
+        const readVal = postReadTime.value.trim();
         const ratingVal = parseFloat(postRating.value);
-        const dateVal  = postDate.value;
-        const excVal   = postExcerpt.value.trim();
-        const bodyVal  = postBody.value.trim();
+        const dateVal = postDate.value;
+        const excVal = postExcerpt.value.trim();
+        const bodyVal = postBody.value.trim();
 
         // Basic validations
         if (!titleVal || !slugVal || !excVal || !bodyVal) {
@@ -426,7 +426,7 @@
 
         try {
             const isEditing = !!editPostId.value;
-            
+
             if (isEditing) {
                 // Update
                 const { error } = await supabaseClient

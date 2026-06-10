@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog Workspace Admin // Subhadip Shil</title>
-    
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap"
+        rel="stylesheet">
+
     <!-- Main Portfolio CSS Reference -->
     <link rel="stylesheet" href="styles.css?v=5.3.0">
-    
+
     <!-- Admin Portal Styles -->
     <style>
         body {
@@ -58,7 +61,7 @@
         }
 
         .config-warning code {
-            background: rgba(0,0,0,0.2);
+            background: rgba(0, 0, 0, 0.2);
             padding: 2px 6px;
             border-radius: 4px;
             color: #fff;
@@ -68,7 +71,8 @@
         .login-container {
             max-width: 420px;
             margin: 4rem auto;
-            display: none; /* Controlled by admin.js */
+            display: none;
+            /* Controlled by admin.js */
         }
 
         .login-header {
@@ -89,7 +93,8 @@
 
         /* Dashboard Interface */
         .dashboard-container {
-            display: none; /* Controlled by admin.js */
+            display: none;
+            /* Controlled by admin.js */
             max-width: 1400px;
             margin: 0 auto;
             padding: 1.5rem 1.5rem 5rem;
@@ -121,9 +126,11 @@
         .posts-sidebar::-webkit-scrollbar {
             width: 4px;
         }
+
         .posts-sidebar::-webkit-scrollbar-track {
             background: transparent;
         }
+
         .posts-sidebar::-webkit-scrollbar-thumb {
             background: var(--border);
             border-radius: 10px;
@@ -161,14 +168,15 @@
             width: 100%;
         }
 
-        .post-list-item:hover, .post-list-item.active {
+        .post-list-item:hover,
+        .post-list-item.active {
             background: var(--card-hover);
             border-color: var(--pink);
             transform: translateX(4px);
         }
 
         .post-list-item.active {
-            box-shadow: 0 0 15px rgba(255,126,179,0.15);
+            box-shadow: 0 0 15px rgba(255, 126, 179, 0.15);
         }
 
         .pli-title {
@@ -221,7 +229,7 @@
         .editor-tabs {
             display: flex;
             gap: 0.5rem;
-            background: rgba(255,255,255,0.05);
+            background: rgba(255, 255, 255, 0.05);
             padding: 0.25rem;
             border-radius: 100px;
             border: 1px solid var(--border);
@@ -263,9 +271,11 @@
             }
         }
 
-        .form-input, .form-select, .form-textarea {
+        .form-input,
+        .form-select,
+        .form-textarea {
             width: 100%;
-            background: rgba(0,0,0,0.04);
+            background: rgba(0, 0, 0, 0.04);
             border: 1px solid var(--border);
             border-radius: 10px;
             padding: 0.75rem 1rem;
@@ -275,16 +285,18 @@
             outline: none;
             transition: all 0.3s ease;
         }
-        
+
         body.dark-theme .form-input,
         body.dark-theme .form-select,
         body.dark-theme .form-textarea {
-            background: rgba(255,255,255,0.04);
+            background: rgba(255, 255, 255, 0.04);
         }
 
-        .form-input:focus, .form-select:focus, .form-textarea:focus {
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
             border-color: var(--pink);
-            box-shadow: 0 0 12px rgba(255,126,179,0.15);
+            box-shadow: 0 0 12px rgba(255, 126, 179, 0.15);
             background: var(--card-hover);
         }
 
@@ -347,8 +359,13 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
 
         /* Exact styled copy from blog reader layout */
@@ -392,7 +409,8 @@
             margin-bottom: 1.5rem;
         }
 
-        .preview-article-body ul, .preview-article-body ol {
+        .preview-article-body ul,
+        .preview-article-body ol {
             margin: 0 0 1.5rem 1.5rem;
         }
 
@@ -401,7 +419,7 @@
         }
 
         .preview-article-body pre {
-            background: rgba(0,0,0,0.2);
+            background: rgba(0, 0, 0, 0.2);
             border: 1px solid var(--border);
             border-radius: 12px;
             padding: 1.25rem;
@@ -412,7 +430,7 @@
 
         .preview-article-body code {
             font-family: var(--font-mono);
-            background: rgba(255,255,255,0.06);
+            background: rgba(255, 255, 255, 0.06);
             padding: 2px 5px;
             border-radius: 4px;
             font-size: 0.85em;
@@ -424,8 +442,8 @@
             bottom: 2rem;
             left: 50%;
             transform: translate(-50%, 20px);
-            background: rgba(17,17,17,0.92);
-            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(17, 17, 17, 0.92);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             color: #fff;
             padding: 0.8rem 1.8rem;
             border-radius: 100px;
@@ -436,7 +454,7 @@
             opacity: 0;
             pointer-events: none;
             transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
-            box-shadow: 0 16px 40px rgba(0,0,0,0.3);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
             backdrop-filter: blur(8px);
             display: flex;
             align-items: center;
@@ -448,13 +466,20 @@
             opacity: 1;
         }
 
-        .admin-toast.success { border-color: rgba(39,201,63,0.3); }
-        .admin-toast.error { border-color: rgba(255,95,86,0.3); }
+        .admin-toast.success {
+            border-color: rgba(39, 201, 63, 0.3);
+        }
+
+        .admin-toast.error {
+            border-color: rgba(255, 95, 86, 0.3);
+        }
 
         /* Top Nav Sync Settings */
         .site-header {
             position: fixed;
-            top: 0; left: 0; right: 0;
+            top: 0;
+            left: 0;
+            right: 0;
             z-index: 100;
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
@@ -469,7 +494,7 @@
             font-family: var(--font-mono);
             font-size: 0.72rem;
             color: var(--text-dim);
-            background: rgba(255,255,255,0.04);
+            background: rgba(255, 255, 255, 0.04);
             border: 1px solid var(--border);
             padding: 0.4rem 1rem;
             border-radius: 100px;
@@ -487,6 +512,7 @@
         }
     </style>
 </head>
+
 <body class="dark-theme">
 
     <!-- Ambient Grid Blobs -->
@@ -499,9 +525,10 @@
     <!-- Standalone Site Header -->
     <header class="site-header reveal active">
         <div class="header-logo-group">
-            <a href="index.html" class="logo">vibe.coder<span class="logo-dot">.</span><span class="logo-subtext">blog management portal</span></a>
+            <a href="index.html" class="logo">vibe.coder<span class="logo-dot">.</span><span class="logo-subtext">blog
+                    management portal</span></a>
         </div>
-        
+
         <div class="header-actions" id="header-user-actions" style="display: none;">
             <div class="user-profile-badge">
                 <span class="user-dot-active"></span>
@@ -513,11 +540,13 @@
     </header>
 
     <main class="page-section">
-        
+
         <!-- Config Alert warning if credentials are placeholder -->
         <div class="config-warning" id="config-warning-banner">
-            <strong>⚠ Configuration Required:</strong> To enable Supabase authentication and database features, you must fill in your connection credentials inside the <code>supabase-config.js</code> file.
-            <br>Currently, the admin portal is running in <em>read-only sandbox mode</em>, meaning modifications cannot be saved.
+            <strong>⚠ Configuration Required:</strong> To enable Supabase authentication and database features, you must
+            fill in your connection credentials inside the <code>supabase-config.js</code> file.
+            <br>Currently, the admin portal is running in <em>read-only sandbox mode</em>, meaning modifications cannot
+            be saved.
         </div>
 
         <!-- 1. Authentication Area -->
@@ -531,13 +560,16 @@
                 <form id="login-form" class="login-form">
                     <div class="payload-row">
                         <span class="prompt">&gt; EMAIL_ADDRESS</span>
-                        <input type="email" id="login-email" class="form-input" placeholder="e.g. subhadip@subhadipshil.in" required>
+                        <input type="email" id="login-email" class="form-input"
+                            placeholder="e.g. subhadip@subhadipshil.in" required>
                     </div>
                     <div class="payload-row">
                         <span class="prompt">&gt; ACCESS_KEY_HASH</span>
-                        <input type="password" id="login-password" class="form-input" placeholder="••••••••••••" required>
+                        <input type="password" id="login-password" class="form-input" placeholder="••••••••••••"
+                            required>
                     </div>
-                    <button type="submit" class="transmit-btn" style="margin-top: 1rem; width: 100%; justify-content: center;">AUTHENTICATE ⮕</button>
+                    <button type="submit" class="transmit-btn"
+                        style="margin-top: 1rem; width: 100%; justify-content: center;">AUTHENTICATE ⮕</button>
                 </form>
             </div>
         </section>
@@ -545,7 +577,7 @@
         <!-- 2. Dashboard Area -->
         <section class="dashboard-container reveal active" id="dashboard-section">
             <div class="dashboard-grid">
-                
+
                 <!-- Left: Blog List Sidebar -->
                 <aside class="posts-sidebar">
                     <div class="sidebar-header">
@@ -559,7 +591,7 @@
 
                 <!-- Right: Workspace Editor Pane -->
                 <main class="admin-glass-card editor-panel">
-                    
+
                     <div class="editor-header">
                         <span class="editor-title" id="editor-action-title">Create New Article</span>
                         <div class="editor-tabs">
@@ -573,18 +605,22 @@
                         <form id="editor-form" class="editor-form">
                             <!-- Hidden identifier for editing -->
                             <input type="hidden" id="edit-post-id">
-                            
+
                             <div class="payload-row">
                                 <span class="prompt">&gt; TITLE</span>
-                                <input type="text" id="post-title" class="form-input" placeholder="e.g. The Art of Motion: Why Animation Changes Everything" required>
+                                <input type="text" id="post-title" class="form-input"
+                                    placeholder="e.g. The Art of Motion: Why Animation Changes Everything" required>
                             </div>
 
                             <div class="form-row-3">
                                 <div class="payload-row">
                                     <span class="prompt">&gt; URL_SLUG</span>
                                     <div class="slug-input-group">
-                                        <input type="text" id="post-slug" class="form-input" style="font-family: var(--font-mono); font-size: 0.8rem;" placeholder="e.g. art-of-motion" required>
-                                        <button type="button" class="btn-slug-gen" id="btn-auto-slug" title="Generate slug from title">Auto</button>
+                                        <input type="text" id="post-slug" class="form-input"
+                                            style="font-family: var(--font-mono); font-size: 0.8rem;"
+                                            placeholder="e.g. art-of-motion" required>
+                                        <button type="button" class="btn-slug-gen" id="btn-auto-slug"
+                                            title="Generate slug from title">Auto</button>
                                     </div>
                                 </div>
                                 <div class="payload-row">
@@ -597,14 +633,16 @@
                                 </div>
                                 <div class="payload-row">
                                     <span class="prompt">&gt; READ_TIME</span>
-                                    <input type="text" id="post-read-time" class="form-input" placeholder="e.g. 6 min" required>
+                                    <input type="text" id="post-read-time" class="form-input" placeholder="e.g. 6 min"
+                                        required>
                                 </div>
                             </div>
 
                             <div class="form-row-3">
                                 <div class="payload-row">
                                     <span class="prompt">&gt; RATING_SCORE</span>
-                                    <input type="number" id="post-rating" class="form-input" min="1.0" max="5.0" step="0.1" value="5.0" required>
+                                    <input type="number" id="post-rating" class="form-input" min="1.0" max="5.0"
+                                        step="0.1" value="5.0" required>
                                 </div>
                                 <div class="payload-row" style="grid-column: span 2;">
                                     <span class="prompt">&gt; DATE_PUBLISHED</span>
@@ -614,25 +652,34 @@
 
                             <div class="payload-row">
                                 <span class="prompt">&gt; EXCERPT_PREVIEW</span>
-                                <textarea id="post-excerpt" class="form-input" style="min-height: 80px;" placeholder="Provide a brief summary card details description..." required></textarea>
+                                <textarea id="post-excerpt" class="form-input" style="min-height: 80px;"
+                                    placeholder="Provide a brief summary card details description..."
+                                    required></textarea>
                             </div>
 
                             <div class="payload-row">
                                 <span class="prompt">&gt; ARTICLE_BODY_HTML</span>
-                                <textarea id="post-body" class="form-textarea" placeholder="Use standard HTML tags: <p>, <h2>, <ul>, <li>, <pre><code> for coding blocks..." required></textarea>
+                                <textarea id="post-body" class="form-textarea"
+                                    placeholder="Use standard HTML tags: <p>, <h2>, <ul>, <li>, <pre><code> for coding blocks..."
+                                    required></textarea>
                             </div>
 
                             <div class="form-actions">
-                                <button type="button" class="btn btn-ghost" id="btn-delete-post" style="display: none; background: rgba(255, 95, 86, 0.1); border-color: rgba(255, 95, 86, 0.3); color: #ff5f56;">Delete Post</button>
-                                <button type="button" class="btn btn-ghost" id="btn-cancel-edit" style="margin-left: auto;">Cancel</button>
-                                <button type="submit" class="transmit-btn" id="btn-save-post">PUBLISH_ARTIFACT ⮕</button>
+                                <button type="button" class="btn btn-ghost" id="btn-delete-post"
+                                    style="display: none; background: rgba(255, 95, 86, 0.1); border-color: rgba(255, 95, 86, 0.3); color: #ff5f56;">Delete
+                                    Post</button>
+                                <button type="button" class="btn btn-ghost" id="btn-cancel-edit"
+                                    style="margin-left: auto;">Cancel</button>
+                                <button type="submit" class="transmit-btn" id="btn-save-post">PUBLISH_ARTIFACT
+                                    ⮕</button>
                             </div>
                         </form>
                     </div>
 
                     <!-- Preview Sub-Pane -->
                     <div class="pane-content preview-pane" id="preview-pane">
-                        <article class="blog-modal-panel" style="position: static; max-width: 100%; border: none; background: none; padding: 0; backdrop-filter: none; box-shadow: none;">
+                        <article class="blog-modal-panel"
+                            style="position: static; max-width: 100%; border: none; background: none; padding: 0; backdrop-filter: none; box-shadow: none;">
                             <div class="preview-article-header">
                                 <div id="preview-meta">
                                     <!-- Dynamic badge -->
@@ -668,4 +715,324 @@
     <script src="blog-db.js"></script>
     <script src="admin.js"></script>
 </body>
+
+</html>
+</section>
+
+<!-- 2. Dashboard Area -->
+<section class="dashboard-container reveal active" id="dashboard-section">
+
+    <!-- Global Admin Nav Bar -->
+    <div class="admin-sub-nav">
+        <button class="sub-nav-btn active" id="sub-nav-home">🏠 Dashboard Home</button>
+        <button class="sub-nav-btn" id="sub-nav-articles">📝 Manage Articles</button>
+        <button class="sub-nav-btn" id="sub-nav-tickets">🎫 Error Tickets</button>
+    </div>
+
+    <!-- VIEW 1: Dashboard Home Landing Page -->
+    <div class="dashboard-view" id="view-dashboard-home">
+        <div class="dashboard-welcome-banner">
+            <div class="welcome-text">
+                <span class="section-label">// Admin Workspace Console</span>
+                <h1>Subhadip Shil's Portal Dashboard</h1>
+                <p class="section-sub">Control center for articles, error tracking, and portfolio telemetry.</p>
+            </div>
+            <div class="status-indicator-badge">
+                <span class="status-pulse-green"></span>
+                Supabase Connection Online
+            </div>
+        </div>
+
+        <!-- Stats Grid -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-value" id="stat-total-articles">0</div>
+                <div class="stat-label">Total Articles</div>
+                <div class="stat-accent" style="background: var(--pink);"></div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="stat-avg-rating">5.0</div>
+                <div class="stat-label">Avg Article Rating</div>
+                <div class="stat-accent" style="background: var(--blue);"></div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="stat-pending-tickets">0</div>
+                <div class="stat-label">Pending Tickets</div>
+                <div class="stat-accent" style="background: var(--purple);"></div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="stat-resolved-tickets">0</div>
+                <div class="stat-label">Resolved Tickets</div>
+                <div class="stat-accent" style="background: var(--yellow);"></div>
+            </div>
+        </div>
+
+        <!-- Quick Action Cards (Bento Grid Style) -->
+        <div class="actions-bento-grid">
+            <div class="action-bento-card" id="action-go-articles">
+                <div class="card-icon">📝</div>
+                <h3>Manage Blog Articles</h3>
+                <p>Write new blog entries, update existing posts, delete items, and preview live layouts before
+                    publishing.</p>
+                <span class="action-link">Open Editor &rarr;</span>
+            </div>
+
+            <div class="action-bento-card" id="action-go-tickets">
+                <div class="card-icon">🎫</div>
+                <h3>Error Tickets Console</h3>
+                <p>Track reported bugs, interface issues, and system connection errors. Mark them as pending,
+                    in-progress, or resolved.</p>
+                <span class="action-link">View Tickets &rarr;</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- VIEW 2: Manage Articles (Sidebar & Editor Layout) -->
+    <div class="dashboard-view" id="view-manage-articles" style="display: none;">
+        <div class="dashboard-grid">
+
+            <!-- Left: Blog List Sidebar -->
+            <aside class="posts-sidebar">
+                <div class="sidebar-header">
+                    <h2>Articles</h2>
+                    <button class="btn btn-primary btn-sm" id="btn-add-new">+ Add New</button>
+                </div>
+                <div id="posts-list-target" style="display: flex; flex-direction: column; gap: 0.75rem;">
+                    <!-- Rendered by JS -->
+                </div>
+            </aside>
+
+            <!-- Right: Workspace Editor Pane -->
+            <main class="admin-glass-card editor-panel">
+
+                <div class="editor-header">
+                    <span class="editor-title" id="editor-action-title">Create New Article</span>
+                    <div class="editor-tabs">
+                        <button class="editor-tab active" data-tab="edit">Editor</button>
+                        <button class="editor-tab" data-tab="preview" id="btn-tab-preview">Live Preview</button>
+                    </div>
+                </div>
+
+                <!-- Editor Sub-Pane -->
+                <div class="pane-content" id="edit-pane">
+                    <form id="editor-form" class="editor-form">
+                        <!-- Hidden identifier for editing -->
+                        <input type="hidden" id="edit-post-id">
+
+                        <div class="payload-row">
+                            <span class="prompt">&gt; TITLE</span>
+                            <input type="text" id="post-title" class="form-input"
+                                placeholder="e.g. The Art of Motion: Why Animation Changes Everything" required>
+                        </div>
+
+                        <div class="form-row-3">
+                            <div class="payload-row">
+                                <span class="prompt">&gt; URL_SLUG</span>
+                                <div class="slug-input-group">
+                                    <input type="text" id="post-slug" class="form-input"
+                                        style="font-family: var(--font-mono); font-size: 0.8rem;"
+                                        placeholder="e.g. art-of-motion" required>
+                                    <button type="button" class="btn-slug-gen" id="btn-auto-slug"
+                                        title="Generate slug from title">Auto</button>
+                                </div>
+                            </div>
+                            <div class="payload-row">
+                                <span class="prompt">&gt; CATEGORY</span>
+                                <select id="post-category" class="form-select" required>
+                                    <option value="Dev">Dev (Cyan / Blue)</option>
+                                    <option value="Design">Design (Yellow / Orange)</option>
+                                    <option value="Motion">Motion (Pink / Red)</option>
+                                </select>
+                            </div>
+                            <div class="payload-row">
+                                <span class="prompt">&gt; READ_TIME</span>
+                                <input type="text" id="post-read-time" class="form-input" placeholder="e.g. 6 min"
+                                    required>
+                            </div>
+                        </div>
+
+                        <div class="form-row-3">
+                            <div class="payload-row">
+                                <span class="prompt">&gt; RATING_SCORE</span>
+                                <input type="number" id="post-rating" class="form-input" min="1.0" max="5.0" step="0.1"
+                                    value="5.0" required>
+                            </div>
+                            <div class="payload-row" style="grid-column: span 2;">
+                                <span class="prompt">&gt; DATE_PUBLISHED</span>
+                                <input type="date" id="post-date" class="form-input" required>
+                            </div>
+                        </div>
+
+                        <div class="payload-row">
+                            <span class="prompt">&gt; EXCERPT_PREVIEW</span>
+                            <textarea id="post-excerpt" class="form-input" style="min-height: 80px;"
+                                placeholder="Provide a brief summary card details description..." required></textarea>
+                        </div>
+
+                        <div class="payload-row">
+                            <span class="prompt">&gt; ARTICLE_BODY_HTML</span>
+                            <textarea id="post-body" class="form-textarea"
+                                placeholder="Use standard HTML tags: <p>, <h2>, <ul>, <li>, <pre><code> for coding blocks..."
+                                required></textarea>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-ghost" id="btn-delete-post"
+                                style="display: none; background: rgba(255, 95, 86, 0.1); border-color: rgba(255, 95, 86, 0.3); color: #ff5f56;">Delete
+                                Post</button>
+                            <button type="button" class="btn btn-ghost" id="btn-cancel-edit"
+                                style="margin-left: auto;">Cancel</button>
+                            <button type="submit" class="transmit-btn" id="btn-save-post">PUBLISH_ARTIFACT ⮕</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Preview Sub-Pane -->
+                <div class="pane-content preview-pane" id="preview-pane">
+                    <article class="blog-modal-panel"
+                        style="position: static; max-width: 100%; border: none; background: none; padding: 0; backdrop-filter: none; box-shadow: none;">
+                        <div class="preview-article-header">
+                            <div id="preview-meta">
+                                <!-- Dynamic badge -->
+                            </div>
+                            <h2 class="preview-article-title" id="preview-title"></h2>
+                            <div class="preview-article-meta" id="preview-info"></div>
+                        </div>
+                        <div class="preview-article-body" id="preview-body">
+                            <!-- Rendered HTML body -->
+                        </div>
+                    </article>
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+    <!-- VIEW 3: Error Tickets Console -->
+    <div class="dashboard-view" id="view-error-tickets" style="display: none;">
+        <div class="dashboard-grid">
+
+            <!-- Left: Tickets List Sidebar -->
+            <aside class="posts-sidebar">
+                <div class="sidebar-header">
+                    <h2>Error Tickets</h2>
+                    <button class="btn btn-primary btn-sm" id="btn-create-ticket">+ Submit Ticket</button>
+                </div>
+                <div id="tickets-list-target" style="display: flex; flex-direction: column; gap: 0.75rem;">
+                    <!-- Rendered by JS -->
+                </div>
+            </aside>
+
+            <!-- Right: Ticket Viewer Panel -->
+            <main class="admin-glass-card editor-panel">
+                <div class="editor-header">
+                    <span class="editor-title" id="ticket-action-title">Submit Ticket</span>
+                </div>
+
+                <!-- Ticket Viewer Content -->
+                <div class="pane-content" id="ticket-view-pane" style="display: none;">
+                    <div class="ticket-view-header"
+                        style="border-bottom: 1px solid var(--border); padding-bottom: 1.5rem; margin-bottom: 1.5rem;">
+                        <div class="ticket-title-row"
+                            style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem;">
+                            <h2 id="ticket-view-title"
+                                style="font-family: var(--font-display); font-size: 1.6rem; font-weight: 800;"></h2>
+                            <span id="ticket-view-badge" class="pli-badge"
+                                style="font-family: var(--font-mono); padding: 4px 10px; font-size: 0.7rem;"></span>
+                        </div>
+                        <div class="ticket-meta-row"
+                            style="display: flex; gap: 1.5rem; flex-wrap: wrap; font-size: 0.8rem; color: var(--text-dim);">
+                            <span>Created by: <strong id="ticket-view-author"
+                                    style="color: var(--text);"></strong></span>
+                            <span>Date: <strong id="ticket-view-date" style="color: var(--text);"></strong></span>
+                            <span>Status: <strong id="ticket-view-status" style="color: var(--text);"></strong></span>
+                        </div>
+                    </div>
+
+                    <div class="payload-row">
+                        <span class="prompt">&gt; DESCRIPTION</span>
+                        <div id="ticket-view-desc"
+                            style="background: rgba(0,0,0,0.2); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; font-size: 0.88rem; line-height: 1.6; margin-top: 0.5rem; white-space: pre-wrap;">
+                        </div>
+                    </div>
+
+                    <div class="form-actions"
+                        style="margin-top: 2.5rem; border-top: 1px solid var(--border); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                        <div class="ticket-status-actions" style="display: flex; flex-direction: column; gap: 0.5rem;">
+                            <span class="form-label" style="font-family: var(--font-mono); font-size: 0.65rem;">Update
+                                Status:</span>
+                            <div class="btn-group" style="display: flex; gap: 0.5rem;">
+                                <button class="btn btn-ghost btn-sm" id="btn-ticket-pending">Pending</button>
+                                <button class="btn btn-ghost btn-sm" id="btn-ticket-progress">In Progress</button>
+                                <button class="btn btn-ghost btn-sm" id="btn-ticket-resolve">Resolve</button>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-ghost" id="btn-delete-ticket"
+                            style="background: rgba(255, 95, 86, 0.1); border-color: rgba(255, 95, 86, 0.3); color: #ff5f56; align-self: flex-end;">Delete
+                            Ticket</button>
+                    </div>
+                </div>
+
+                <!-- Ticket Creation Form Pane -->
+                <div class="pane-content" id="ticket-create-pane">
+                    <form id="ticket-form" class="editor-form">
+                        <div class="payload-row">
+                            <span class="prompt">&gt; TICKET_TITLE</span>
+                            <input type="text" id="ticket-input-title" class="form-input"
+                                placeholder="e.g. Broken footer layout on viewport mobile width" required>
+                        </div>
+                        <div class="form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                            <div class="payload-row">
+                                <span class="prompt">&gt; CATEGORY</span>
+                                <select id="ticket-input-category" class="form-select" required>
+                                    <option value="Frontend">Frontend Bug</option>
+                                    <option value="Backend">Backend / DB Connection</option>
+                                    <option value="UI/UX">Design / Alignment</option>
+                                    <option value="Performance">Performance / Lag</option>
+                                </select>
+                            </div>
+                            <div class="payload-row">
+                                <span class="prompt">&gt; SUBMITTER_NAME</span>
+                                <input type="text" id="ticket-input-author" class="form-input"
+                                    placeholder="e.g. Subhadip Shil" required>
+                            </div>
+                        </div>
+                        <div class="payload-row">
+                            <span class="prompt">&gt; ERROR_DESCRIPTION</span>
+                            <textarea id="ticket-input-desc" class="form-textarea" style="min-height: 180px;"
+                                placeholder="Provide a detailed description of the error, logs, error messages, or replication steps..."
+                                required></textarea>
+                        </div>
+                        <div class="form-actions"
+                            style="border-top: 1px solid var(--border); padding-top: 1.5rem; margin-top: 1rem; display: flex; justify-content: flex-end; gap: 1rem;">
+                            <button type="button" class="btn btn-ghost" id="btn-ticket-cancel">Cancel</button>
+                            <button type="submit" class="transmit-btn">SUBMIT_TICKET ⮕</button>
+                        </div>
+                    </form>
+                </div>
+            </main>
+        </div>
+    </div>
+
+</section>
+
+</main>
+
+<!-- Feedback Toast -->
+<div class="admin-toast" id="admin-toast">
+    <span id="toast-icon">📋</span> <span id="toast-message">Operation successful!</span>
+</div>
+
+<!-- Custom Cursor -->
+<div class="cursor-dot" id="cursor-dot"></div>
+<div class="cursor-ring" id="cursor-ring"></div>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
+<script src="blog-posts.js?v=5.3.0"></script>
+<script src="blog-db.js"></script>
+<script src="admin.js"></script>
+</body>
+
 </html>
