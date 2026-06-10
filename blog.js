@@ -48,7 +48,7 @@
     // ── THEME SYNC ─────────────────────────────────────────
     const themeBtn = document.getElementById('theme-toggle');
     const savedTheme = localStorage.getItem('theme');
-    
+
     // Default to dark theme unless user explicitly saved light theme
     if (savedTheme === 'light') {
         document.body.classList.remove('dark-theme');
@@ -62,22 +62,22 @@
     });
 
     // ── PRECISION TRAIL CURSOR ─────────────────────────────
-    const dot  = document.getElementById('cursor-dot');
+    const dot = document.getElementById('cursor-dot');
     const ring = document.getElementById('cursor-ring');
 
     if (dot && ring && window.matchMedia('(hover: hover)').matches) {
         let mx = 0, my = 0, rx = 0, ry = 0;
         document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
-        
+
         const lerp = (a, b, t) => a + (b - a) * t;
-        
+
         const animateCursor = () => {
             rx = lerp(rx, mx, 0.12);
             ry = lerp(ry, my, 0.12);
-            dot.style.left  = mx + 'px';
-            dot.style.top   = my + 'px';
+            dot.style.left = mx + 'px';
+            dot.style.top = my + 'px';
             ring.style.left = rx + 'px';
-            ring.style.top  = ry + 'px';
+            ring.style.top = ry + 'px';
             requestAnimationFrame(animateCursor);
         };
         animateCursor();
@@ -89,7 +89,7 @@
                 // Remove duplicates if re-rendered
                 el.removeEventListener('mouseenter', onMouseEnter);
                 el.removeEventListener('mouseleave', onMouseLeave);
-                
+
                 el.addEventListener('mouseenter', onMouseEnter);
                 el.addEventListener('mouseleave', onMouseLeave);
             });
@@ -175,9 +175,9 @@
         if (searchQuery) {
             posts = posts.filter(post => {
                 return post.title.toLowerCase().includes(searchQuery) ||
-                       post.category.toLowerCase().includes(searchQuery) ||
-                       post.excerpt.toLowerCase().includes(searchQuery) ||
-                       post.body.toLowerCase().includes(searchQuery);
+                    post.category.toLowerCase().includes(searchQuery) ||
+                    post.excerpt.toLowerCase().includes(searchQuery) ||
+                    post.body.toLowerCase().includes(searchQuery);
             });
         }
 
@@ -247,7 +247,7 @@
 
         // Generate full deep link address
         const shareUrl = `${window.location.origin}${window.location.pathname}#${activePostSlug}`;
-        
+
         navigator.clipboard.writeText(shareUrl).then(() => {
             // Show toast micro-interaction
             toast?.classList.add('show');
@@ -295,7 +295,7 @@
         star.addEventListener('click', () => {
             const val = parseInt(star.dataset.val, 10);
             activeUserRating = val;
-            
+
             starOptions.forEach(s => {
                 const sVal = parseInt(s.dataset.val, 10);
                 s.classList.toggle('active', sVal <= val);
@@ -324,10 +324,10 @@
     // Form submission
     commentForm?.addEventListener('submit', (e) => {
         e.preventDefault();
-        
+
         const authorInput = document.getElementById('comment-author');
         const textInput = document.getElementById('comment-text');
-        
+
         if (!authorInput || !textInput) return;
 
         const newComment = {
@@ -343,7 +343,7 @@
         // Reset inputs
         authorInput.value = '';
         textInput.value = '';
-        
+
         // Reset stars to 5
         activeUserRating = 5;
         starOptions.forEach(s => {
@@ -373,9 +373,9 @@
     const saveComment = (slug, comment) => {
         const comments = getComments(slug);
         comments.unshift(comment); // Prepends to keep newest reviews at top
-        
+
         localStorage.setItem(`blog_comments_${slug}`, JSON.stringify(comments));
-        
+
         // Connect backend API later hooks
         saveCommentToBackend(slug, comment)
             .then(res => console.log('Backend sync status: Mock success. Ready for real API connection!', res))
@@ -428,7 +428,7 @@
                     </div>
                 </div>
                 <p class="comment-body">${escapeHTML(c.text)}</p>`;
-            
+
             commentsList.appendChild(item);
         });
 
@@ -451,20 +451,20 @@
         const post = blogPosts.find(p => p.slug === slug);
         if (!post) return;
 
-        const modal   = document.getElementById('blog-modal');
+        const modal = document.getElementById('blog-modal');
         const titleEl = document.getElementById('blog-modal-title');
-        const metaEl  = document.getElementById('blog-modal-meta');
-        const infoEl  = document.getElementById('blog-modal-info');
-        const bodyEl  = document.getElementById('blog-modal-body');
+        const metaEl = document.getElementById('blog-modal-meta');
+        const infoEl = document.getElementById('blog-modal-info');
+        const bodyEl = document.getElementById('blog-modal-body');
         if (!modal) return;
 
         activePostSlug = slug;
         const dateLong = new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 
         titleEl.textContent = post.title;
-        metaEl.innerHTML  = `<span class="blog-modal-cat-badge" style="background:${post.categoryColor};">${post.category}</span>`;
-        infoEl.innerHTML  = `<span>${dateLong}</span><span>&middot;</span><span>${post.readTime} read</span><span>&middot;</span><span class="blog-modal-rating">&#9733; ${post.rating}</span>`;
-        bodyEl.innerHTML  = post.body;
+        metaEl.innerHTML = `<span class="blog-modal-cat-badge" style="background:${post.categoryColor};">${post.category}</span>`;
+        infoEl.innerHTML = `<span>${dateLong}</span><span>&middot;</span><span>${post.readTime} read</span><span>&middot;</span><span class="blog-modal-rating">&#9733; ${post.rating}</span>`;
+        bodyEl.innerHTML = post.body;
 
         // Render reviews matching post
         renderCommentsList(slug);
@@ -474,7 +474,7 @@
 
         modal.classList.add('open');
         document.body.style.overflow = 'hidden';
-        
+
         // Accessibility focus trap setup
         setTimeout(() => document.getElementById('blog-modal-close')?.focus(), 60);
     };
@@ -482,7 +482,7 @@
     const closeBlogPost = () => {
         const modal = document.getElementById('blog-modal');
         if (!modal) return;
-        
+
         modal.classList.remove('open');
         document.body.style.overflow = '';
         activePostSlug = '';
@@ -494,8 +494,8 @@
     // Setup close listeners
     document.getElementById('blog-modal-close')?.addEventListener('click', closeBlogPost);
     document.getElementById('blog-modal-overlay')?.addEventListener('click', closeBlogPost);
-    document.addEventListener('keydown', (e) => { 
-        if (e.key === 'Escape') closeBlogPost(); 
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeBlogPost();
     });
 
     // ── INITIALISE DYNAMIC PAGE ACTIONS ─────────────────────
@@ -505,7 +505,7 @@
         checkHashOnLoad();
     };
     initPage();
-    
+
     // Watch URL hashes changes dynamically
     window.addEventListener('hashchange', checkHashOnLoad);
 

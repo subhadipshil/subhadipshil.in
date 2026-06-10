@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thoughts & Writings // Subhadip Shil</title>
-    
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap"
+        rel="stylesheet">
+
     <!-- Main Portfolio CSS Reference -->
     <link rel="stylesheet" href="styles.css?v=5.3.0">
-    
+
     <!-- Blog Workspace Page Specific Styles -->
     <style>
         /* Standalone Blog Layout Adaptations */
@@ -30,7 +33,9 @@
         /* Standalone Header Nav tweaks */
         .site-header {
             position: fixed;
-            top: 0; left: 0; right: 0;
+            top: 0;
+            left: 0;
+            right: 0;
             z-index: 100;
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
@@ -103,7 +108,7 @@
         .blog-search-input:focus {
             outline: none;
             border-color: var(--pink);
-            box-shadow: 0 0 20px rgba(255,126,179,0.15);
+            box-shadow: 0 0 20px rgba(255, 126, 179, 0.15);
             background: var(--card-hover);
         }
 
@@ -125,8 +130,8 @@
 
         /* Deep-Link Share Button */
         .blog-share-btn {
-            background: rgba(255,126,179,0.08);
-            border: 1px solid rgba(255,126,179,0.3);
+            background: rgba(255, 126, 179, 0.08);
+            border: 1px solid rgba(255, 126, 179, 0.3);
             border-radius: 100px;
             color: var(--pink);
             padding: 0.45rem 1.1rem;
@@ -146,7 +151,7 @@
             border-color: var(--pink);
             color: #fff;
             transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(255,126,179,0.3);
+            box-shadow: 0 4px 12px rgba(255, 126, 179, 0.3);
         }
 
         .blog-share-btn svg {
@@ -160,8 +165,8 @@
             bottom: 2rem;
             left: 50%;
             transform: translate(-50%, 20px);
-            background: rgba(17,17,17,0.92);
-            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(17, 17, 17, 0.92);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             color: #fff;
             padding: 0.8rem 1.8rem;
             border-radius: 100px;
@@ -172,7 +177,7 @@
             opacity: 0;
             pointer-events: none;
             transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
-            box-shadow: 0 16px 40px rgba(0,0,0,0.3);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
             backdrop-filter: blur(8px);
             display: flex;
             align-items: center;
@@ -216,8 +221,15 @@
         }
 
         @keyframes slideInComment {
-            from { opacity: 0; transform: translateY(12px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .comment-header {
@@ -264,14 +276,14 @@
 
         /* Review Submission Form */
         .review-form {
-            background: rgba(0,0,0,0.01);
+            background: rgba(0, 0, 0, 0.01);
             border: 1px dashed var(--border);
             border-radius: 18px;
             padding: 1.6rem;
         }
-        
+
         body.dark-theme .review-form {
-            background: rgba(255,255,255,0.01);
+            background: rgba(255, 255, 255, 0.01);
         }
 
         .form-row {
@@ -282,7 +294,9 @@
         }
 
         @media (max-width: 580px) {
-            .form-row { grid-template-columns: 1fr; }
+            .form-row {
+                grid-template-columns: 1fr;
+            }
         }
 
         .form-group {
@@ -354,7 +368,7 @@
             font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(255,126,179,0.3);
+            box-shadow: 0 4px 12px rgba(255, 126, 179, 0.3);
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
@@ -364,7 +378,7 @@
 
         .form-submit-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(255,126,179,0.45);
+            box-shadow: 0 8px 20px rgba(255, 126, 179, 0.45);
         }
 
         /* Cool Standalone Glassmorphic Preloader */
@@ -378,7 +392,7 @@
             justify-content: center;
             transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.8s;
         }
-        
+
         body.dark-theme .blog-preloader {
             background: #0a0a0a;
         }
@@ -386,7 +400,7 @@
         .preloader-glass {
             position: absolute;
             inset: 0;
-            background: radial-gradient(circle at center, rgba(255,126,179,0.06) 0%, rgba(0,0,0,0) 70%);
+            background: radial-gradient(circle at center, rgba(255, 126, 179, 0.06) 0%, rgba(0, 0, 0, 0) 70%);
             backdrop-filter: blur(25px);
             -webkit-backdrop-filter: blur(25px);
             z-index: -1;
@@ -417,7 +431,7 @@
         .preloader-bar-wrap {
             width: 100%;
             height: 3px;
-            background: rgba(255,255,255,0.08);
+            background: rgba(255, 255, 255, 0.08);
             border-radius: 10px;
             overflow: hidden;
             position: relative;
@@ -428,7 +442,7 @@
             height: 100%;
             background: linear-gradient(90deg, var(--pink), var(--purple));
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(255,126,179,0.8);
+            box-shadow: 0 0 10px rgba(255, 126, 179, 0.8);
             transition: width 0.3s ease;
         }
 
@@ -438,9 +452,9 @@
             color: var(--text-dim);
             letter-spacing: 2px;
             text-transform: uppercase;
-            text-shadow: 0 0 8px rgba(255,255,255,0.1);
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.1);
         }
-        
+
         .blog-preloader.fade-out {
             opacity: 0;
             visibility: hidden;
@@ -448,6 +462,7 @@
         }
     </style>
 </head>
+
 <body class="dark-theme"> <!-- Default dark-theme -->
 
     <!-- Beautiful Glassmorphic Preloader -->
@@ -472,21 +487,25 @@
     <!-- Standalone Site Header -->
     <header class="site-header reveal">
         <div class="header-logo-group">
-            <a href="index.html" class="logo">vibe.coder<span class="logo-dot">.</span><span class="logo-subtext">creative producer</span></a>
+            <a href="index.html" class="logo">vibe.coder<span class="logo-dot">.</span><span
+                    class="logo-subtext">creative producer</span></a>
             <a href="index.html" class="back-link">
                 <span>←</span> Back to Portfolio
             </a>
         </div>
-        
+
         <div class="header-actions">
-            <a href="admin.html" class="btn btn-ghost btn-sm" style="margin-right: 0.5rem; display: inline-flex; align-items: center; gap: 0.4rem;">Admin Portal ⚙️</a>
-            <button class="theme-toggle-btn" id="theme-toggle" title="Toggle Theme" aria-label="Toggle dark/light theme">🌓</button>
+            <a href="admin.html" class="btn btn-ghost btn-sm"
+                style="margin-right: 0.5rem; display: inline-flex; align-items: center; gap: 0.4rem;">Admin Portal
+                ⚙️</a>
+            <button class="theme-toggle-btn" id="theme-toggle" title="Toggle Theme"
+                aria-label="Toggle dark/light theme">🌓</button>
         </div>
     </header>
 
     <!-- Main standalone blog container -->
     <main class="blog-container">
-        
+
         <!-- Hero Header -->
         <section class="blog-hero">
             <div class="section-label">// standalone blog workspace</div>
@@ -497,7 +516,8 @@
         <!-- Search Input Bar -->
         <div class="blog-search-container reveal">
             <span class="blog-search-icon">🔍</span>
-            <input type="text" id="blog-search" class="blog-search-input" placeholder="Search by title, categories, or keywords..." aria-label="Search posts">
+            <input type="text" id="blog-search" class="blog-search-input"
+                placeholder="Search by title, categories, or keywords..." aria-label="Search posts">
         </div>
 
         <!-- Filter Tabs -->
@@ -522,33 +542,35 @@
         <div class="blog-modal-overlay" id="blog-modal-overlay"></div>
         <article class="blog-modal-panel">
             <button class="blog-modal-close" id="blog-modal-close" aria-label="Close article">✕</button>
-            
+
             <div class="blog-modal-header">
-                <div class="blog-modal-category-wrap" style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.8rem;">
+                <div class="blog-modal-category-wrap"
+                    style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.8rem;">
                     <div id="blog-modal-meta"></div>
-                    
+
                     <!-- Deep-Link Sharing Button -->
                     <button class="blog-share-btn" id="blog-share-btn">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                            stroke-linecap="round" stroke-linejoin="round">
                             <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
                             <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
                         </svg>
                         Share Link
                     </button>
                 </div>
-                
+
                 <h2 class="blog-modal-title" id="blog-modal-title"></h2>
-                
+
                 <div class="blog-modal-info" id="blog-modal-info"></div>
             </div>
-            
+
             <!-- Article Body -->
             <div class="blog-modal-body" id="blog-modal-body"></div>
 
             <!-- Immersive Comments & Review section -->
             <section class="comments-section">
                 <h3 class="comments-title">Reviews &amp; Comments (<span id="comments-count">0</span>)</h3>
-                
+
                 <!-- Comments List -->
                 <div class="comments-list" id="comments-list">
                     <!-- Populated dynamically -->
@@ -556,27 +578,37 @@
 
                 <!-- Review Form -->
                 <div class="review-form">
-                    <h4 style="margin-bottom: 0.85rem; font-family: var(--font-display); font-weight: 700;">Submit a Review</h4>
+                    <h4 style="margin-bottom: 0.85rem; font-family: var(--font-display); font-weight: 700;">Submit a
+                        Review</h4>
                     <form id="comment-form" style="display: flex; flex-direction: column; gap: 0.95rem;">
                         <div class="form-row">
                             <div class="form-group">
                                 <label class="form-label" for="comment-author">Your Name</label>
-                                <input type="text" id="comment-author" class="form-input" placeholder="e.g. Subhadip Shil" required>
+                                <input type="text" id="comment-author" class="form-input"
+                                    placeholder="e.g. Subhadip Shil" required>
                             </div>
                             <div class="form-group">
                                 <label class="form-label">Your Rating</label>
-                                <div class="rating-selector" id="rating-selector" role="radiogroup" aria-label="Select rating">
-                                    <button type="button" class="star-option active" data-val="1" role="radio" aria-checked="false" aria-label="1 Star">★</button>
-                                    <button type="button" class="star-option active" data-val="2" role="radio" aria-checked="false" aria-label="2 Stars">★</button>
-                                    <button type="button" class="star-option active" data-val="3" role="radio" aria-checked="false" aria-label="3 Stars">★</button>
-                                    <button type="button" class="star-option active" data-val="4" role="radio" aria-checked="false" aria-label="4 Stars">★</button>
-                                    <button type="button" class="star-option active" data-val="5" role="radio" aria-checked="true" aria-label="5 Stars">★</button>
+                                <div class="rating-selector" id="rating-selector" role="radiogroup"
+                                    aria-label="Select rating">
+                                    <button type="button" class="star-option active" data-val="1" role="radio"
+                                        aria-checked="false" aria-label="1 Star">★</button>
+                                    <button type="button" class="star-option active" data-val="2" role="radio"
+                                        aria-checked="false" aria-label="2 Stars">★</button>
+                                    <button type="button" class="star-option active" data-val="3" role="radio"
+                                        aria-checked="false" aria-label="3 Stars">★</button>
+                                    <button type="button" class="star-option active" data-val="4" role="radio"
+                                        aria-checked="false" aria-label="4 Stars">★</button>
+                                    <button type="button" class="star-option active" data-val="5" role="radio"
+                                        aria-checked="true" aria-label="5 Stars">★</button>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="form-label" for="comment-text">Review Message</label>
-                            <textarea id="comment-text" class="form-input" rows="4" placeholder="Share your feedback, comments, or technical feedback on this post..." style="resize: vertical;" required></textarea>
+                            <textarea id="comment-text" class="form-input" rows="4"
+                                placeholder="Share your feedback, comments, or technical feedback on this post..."
+                                style="resize: vertical;" required></textarea>
                         </div>
                         <button type="submit" class="form-submit-btn">Submit Review ✨</button>
                     </form>
@@ -602,4 +634,5 @@
     <script src="blog-db.js"></script>
     <script src="blog.js?v=5.3.0"></script>
 </body>
+
 </html>
