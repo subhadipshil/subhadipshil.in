@@ -130,6 +130,7 @@
     // ── DYNAMIC SEARCH & FILTER ENGINE ─────────────────────
     let currentFilter = 'all';
     let searchQuery = '';
+    let blogPosts = [];
 
     const searchInput = document.getElementById('blog-search');
     const filterTabs = document.querySelectorAll('.blog-filter-tab');
@@ -155,7 +156,7 @@
         const grid = document.getElementById('blog-grid');
         if (!grid) return;
 
-        let posts = [...(window.BLOG_POSTS || [])];
+        let posts = [...blogPosts];
 
         // 1. Process Category filters
         if (currentFilter === 'latest') {
@@ -229,7 +230,7 @@
         const hash = window.location.hash.replace('#', '');
         if (hash) {
             // Find post matching hash/slug
-            const post = window.BLOG_POSTS?.find(p => p.slug === hash);
+            const post = blogPosts.find(p => p.slug === hash);
             if (post) {
                 openBlogPost(hash);
             }
@@ -447,7 +448,7 @@
 
     // ── ARTICLE READER MODAL LOGIC ───────────────────────────
     const openBlogPost = (slug) => {
-        const post = window.BLOG_POSTS?.find(p => p.slug === slug);
+        const post = blogPosts.find(p => p.slug === slug);
         if (!post) return;
 
         const modal   = document.getElementById('blog-modal');
@@ -498,8 +499,12 @@
     });
 
     // ── INITIALISE DYNAMIC PAGE ACTIONS ─────────────────────
-    filterAndRenderGrid();
-    checkHashOnLoad();
+    const initPage = async () => {
+        blogPosts = await window.getBlogPosts();
+        filterAndRenderGrid();
+        checkHashOnLoad();
+    };
+    initPage();
     
     // Watch URL hashes changes dynamically
     window.addEventListener('hashchange', checkHashOnLoad);

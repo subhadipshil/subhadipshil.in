@@ -493,14 +493,15 @@
     }
 
 
+    let blogPosts = [];
+
     // ── RENDER HOME BLOG WIDGET ───────────────────────────
     const renderBlogHomeWidget = (mode = 'latest') => {
         const list = document.getElementById('blog-latest-list');
         if (!list) return;
 
-        // Use global BLOG_POSTS loaded from blog-posts.js
-        const postsData = window.BLOG_POSTS || [];
-        let posts = [...postsData];
+        // Use dynamically loaded blog posts
+        let posts = [...blogPosts];
         if (posts.length === 0) return;
 
         posts.sort(mode === 'rated'
@@ -546,11 +547,15 @@
     });
 
     // ── INITIALISE HOME BLOG WIDGET ───────────────────────
-    // Defer slightly to ensure blog-posts.js script loaded
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', () => renderBlogHomeWidget('latest'));
-    } else {
+    const initWidget = async () => {
+        blogPosts = await window.getBlogPosts();
         renderBlogHomeWidget('latest');
+    };
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initWidget);
+    } else {
+        initWidget();
     }
 
 })();

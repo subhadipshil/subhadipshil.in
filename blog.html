@@ -479,6 +479,7 @@
         </div>
         
         <div class="header-actions">
+            <a href="admin.html" class="btn btn-ghost btn-sm" style="margin-right: 0.5rem; display: inline-flex; align-items: center; gap: 0.4rem;">Admin Portal ⚙️</a>
             <button class="theme-toggle-btn" id="theme-toggle" title="Toggle Theme" aria-label="Toggle dark/light theme">🌓</button>
         </div>
     </header>
@@ -595,7 +596,10 @@
     <div class="cursor-ring" id="cursor-ring"></div>
 
     <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-config.js"></script>
     <script src="blog-posts.js?v=5.3.0"></script>
+    <script src="blog-db.js"></script>
     <script src="blog.js?v=5.3.0"></script>
 </body>
 </html>
