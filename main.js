@@ -13,7 +13,7 @@
 
     // ── MOBILE MENU ───────────────────────────────────────
     const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-    const mobileNav     = document.getElementById('mobile-nav');
+    const mobileNav = document.getElementById('mobile-nav');
 
     mobileMenuBtn?.addEventListener('click', () => {
         mobileNav.classList.toggle('open');
@@ -62,7 +62,7 @@
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
     // ── PRECISION CURSOR ──────────────────────────────────
-    const dot  = document.getElementById('cursor-dot');
+    const dot = document.getElementById('cursor-dot');
     const ring = document.getElementById('cursor-ring');
 
     if (dot && ring && window.matchMedia('(hover: hover)').matches) {
@@ -72,10 +72,10 @@
         const animateCursor = () => {
             rx = lerp(rx, mx, 0.12);
             ry = lerp(ry, my, 0.12);
-            dot.style.left  = mx + 'px';
-            dot.style.top   = my + 'px';
+            dot.style.left = mx + 'px';
+            dot.style.top = my + 'px';
             ring.style.left = rx + 'px';
-            ring.style.top  = ry + 'px';
+            ring.style.top = ry + 'px';
             requestAnimationFrame(animateCursor);
         };
         animateCursor();
@@ -91,8 +91,8 @@
     document.querySelectorAll('.btn-primary, .logo').forEach(el => {
         el.addEventListener('mousemove', e => {
             const r = el.getBoundingClientRect();
-            const x = (e.clientX - r.left - r.width  / 2) * 0.25;
-            const y = (e.clientY - r.top  - r.height / 2) * 0.25;
+            const x = (e.clientX - r.left - r.width / 2) * 0.25;
+            const y = (e.clientY - r.top - r.height / 2) * 0.25;
             el.style.transform = `translate(${x}px, ${y}px)`;
         });
         el.addEventListener('mouseleave', () => { el.style.transform = ''; });
@@ -100,11 +100,11 @@
 
     // ── LIVE CLOCK ────────────────────────────────────────
     const timeEl = document.getElementById('current-time');
-    const locEl  = document.getElementById('user-location');
+    const locEl = document.getElementById('user-location');
 
     if (timeEl) {
         try {
-            const tz   = Intl.DateTimeFormat().resolvedOptions().timeZone;
+            const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
             const city = tz.split('/').pop().replace(/_/g, ' ');
             if (locEl) locEl.textContent = city;
 
@@ -117,7 +117,7 @@
 
                 // World Clocks
                 const worldOpts = { hour: '2-digit', minute: '2-digit', hour12: false };
-                
+
                 const clocks = {
                     'time-nyc': 'America/New_York',
                     'time-ldn': 'Europe/London',
@@ -165,8 +165,8 @@
     // ── TRENDING TECH NEWS — Multi-API cascade + 4h cache ─────
     // Strategy: Cache → GNews → NewsData.io → NewsAPI.org
     // 4h cache = max ~6 API hits/visitor/day across ALL sources combined
-    const CACHE_KEY     = 'trends_cache_v2';
-    const CACHE_TTL     = 4 * 60 * 60 * 1000; // 4 hours ms
+    const CACHE_KEY = 'trends_cache_v2';
+    const CACHE_TTL = 4 * 60 * 60 * 1000; // 4 hours ms
 
     // Normalised shape: { title, url, source, publishedAt }
     const NEWS_SOURCES = [
@@ -180,9 +180,9 @@
                 const d = await r.json();
                 if (!r.ok || !d.articles?.length) throw new Error(d.errors?.[0] || 'GNews empty');
                 return d.articles.map(a => ({
-                    title:       a.title.replace(/ - [^-]+$/, '').trim(),
-                    url:         a.url,
-                    source:      a.source?.name || 'GNews',
+                    title: a.title.replace(/ - [^-]+$/, '').trim(),
+                    url: a.url,
+                    source: a.source?.name || 'GNews',
                     publishedAt: a.publishedAt
                 }));
             }
@@ -197,9 +197,9 @@
                 const d = await r.json();
                 if (!r.ok || !d.results?.length) throw new Error('NewsData empty');
                 return d.results.map(a => ({
-                    title:       a.title?.trim() || '(no title)',
-                    url:         a.link,
-                    source:      a.source_id || 'NewsData',
+                    title: a.title?.trim() || '(no title)',
+                    url: a.link,
+                    source: a.source_id || 'NewsData',
                     publishedAt: a.pubDate
                 }));
             }
@@ -215,9 +215,9 @@
                 const d = await r.json();
                 if (!r.ok || !d.articles?.length) throw new Error(d.message || 'NewsAPI empty');
                 return d.articles.map(a => ({
-                    title:       a.title?.replace(/ - [^-]+$/, '').trim() || '(no title)',
-                    url:         a.url,
-                    source:      a.source?.name || 'NewsAPI',
+                    title: a.title?.replace(/ - [^-]+$/, '').trim() || '(no title)',
+                    url: a.url,
+                    source: a.source?.name || 'NewsAPI',
                     publishedAt: a.publishedAt
                 }));
             }
@@ -243,14 +243,14 @@
 
         articles.slice(0, 5).forEach(article => {
             const a = document.createElement('a');
-            a.href      = article.url || '#';
-            a.target    = '_blank';
-            a.rel       = 'noopener noreferrer';
+            a.href = article.url || '#';
+            a.target = '_blank';
+            a.rel = 'noopener noreferrer';
             a.className = 'trend-item';
             // Sanitise title to avoid XSS
-            const title  = document.createTextNode(article.title);
+            const title = document.createTextNode(article.title);
             const source = document.createTextNode(article.source);
-            const ago    = document.createTextNode(timeAgo(article.publishedAt));
+            const ago = document.createTextNode(timeAgo(article.publishedAt));
 
             a.innerHTML = `<span class="trend-dot"></span>
                 <div class="trend-content">
@@ -299,7 +299,7 @@
                 // Cache the result
                 localStorage.setItem(CACHE_KEY, JSON.stringify({
                     timestamp: Date.now(),
-                    source:    src.name,
+                    source: src.name,
                     articles
                 }));
                 renderTrends(articles, src.name, false);
@@ -320,8 +320,8 @@
 
 
     // ── REAL-TIME EMAIL VALIDATION ────────────────────────
-    const emailInput      = document.getElementById('channel-input');
-    const emailVerifyEl   = document.getElementById('email-verify-status');
+    const emailInput = document.getElementById('channel-input');
+    const emailVerifyEl = document.getElementById('email-verify-status');
     let emailDebounceTimer = null;
 
     // Comprehensive email regex: validates local-part, @, domain, and TLD (2–10 chars)
@@ -329,12 +329,12 @@
         /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*\.[a-zA-Z]{2,10}$/.test(val);
 
     const getEmailError = (val) => {
-        if (!val.includes('@'))           return 'missing @ symbol';
+        if (!val.includes('@')) return 'missing @ symbol';
         const [local, domain] = val.split('@');
-        if (!local)                       return 'missing username before @';
+        if (!local) return 'missing username before @';
         if (!domain || !domain.includes('.')) return 'invalid domain';
         const tld = domain.split('.').pop();
-        if (!tld || tld.length < 2)       return 'invalid or missing TLD';
+        if (!tld || tld.length < 2) return 'invalid or missing TLD';
         return 'invalid format';
     };
 
@@ -388,9 +388,9 @@
 
     // ── SECURE UPLINK TERMINAL — WEB3FORMS ───────────────
 
-    const contactForm      = document.getElementById('contact-form');
-    const transmitBtn      = document.getElementById('transmit-btn');
-    const logEl            = document.getElementById('terminal-log');
+    const contactForm = document.getElementById('contact-form');
+    const transmitBtn = document.getElementById('transmit-btn');
+    const logEl = document.getElementById('terminal-log');
     const terminalStatusEl = document.getElementById('terminal-status');
 
     const addLog = (msg, cls = '') => {
@@ -405,8 +405,8 @@
     contactForm?.addEventListener('submit', async (e) => {
         e.preventDefault();
 
-        const name    = document.getElementById('identity-input')?.value.trim();
-        const email   = document.getElementById('channel-input')?.value.trim();
+        const name = document.getElementById('identity-input')?.value.trim();
+        const email = document.getElementById('channel-input')?.value.trim();
         const message = document.getElementById('payload-input')?.value.trim();
 
         // Client-side validation
@@ -514,7 +514,7 @@
         posts.forEach(post => {
             const btn = document.createElement('button');
             btn.className = 'blog-latest-item';
-            
+
             const colorMatch = post.categoryColor.match(/#[0-9a-fA-F]{6}/);
             const indicatorColor = colorMatch ? colorMatch[0] : '#ff7eb3';
 
@@ -528,7 +528,7 @@
                         <span class="bli-stars">&#9733; ${post.rating}</span>
                     </div>
                 </div>`;
-            
+
             // Redirects to standalone blog workspace focused on selected article in a new tab
             btn.addEventListener('click', () => {
                 window.open('blog.html#' + post.slug, '_blank');
